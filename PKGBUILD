@@ -1,17 +1,20 @@
 pkgname=gotree
-pkgver=0.0.1
+pkgver=0.2
 pkgrel=1
-_commit=5af89d2
-_author=boynton
-pkgdesc="A simple tree command clone written in Go"
+_commit=10a34ef
+_author=bvaudour
+pkgdesc="A clone of the UNIX tree command written in Go"
 arch=('x86_64')
-url="https://github.com/boynton/tree"
-license=('Custom')
+url="https://github.com/bvaudour/gotree"
+license=('Public Domain')
 makedepends=('go')
-source=("https://github.com/${_author}/tree/tarball/${_commit}/tree.tar.gz")
-sha256sums=('6580ec4766d6d63e885d8bdb79ecdc6832dd7aa1c9fb2d9d1107f5ca5ddbe37a')
+source=("https://github.com/${_author}/gotree/tarball/${_commit}/gotree.tar.gz")
+sha256sums=('f6823c642735c2256133c957e0795478930be4cf95072dbaecdc68dbe5973db2')
 
 package() {
+	cd ..
+	GOPATH="$(pwd)"
+	echo $GOPATH
 	mkdir -p "${pkgdir}/usr/bin"
-	go build -o "${pkgdir}/usr/bin/${pkgname}" "${srcdir}/${_author}-tree-${_commit}/tree.go"
+	go build -o "${pkgdir}/usr/bin/gotree" ${_author}-gotree-${_commit}
 }
